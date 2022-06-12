@@ -17,7 +17,7 @@ puppeteer_extra_1.default
     await page.setDefaultNavigationTimeout(600000);
     await page.goto('https://dexcom.custhelp.com/');
     {
-        //click date text box to make calendar appear
+        //click date text box to make calendar visible
         const element = await page.waitForSelector(`input[name="Incident.CustomFields.CO.EventDate"]`);
         await (element === null || element === void 0 ? void 0 : element.click());
     }
