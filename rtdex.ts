@@ -21,12 +21,14 @@ if (elapsed > month) {
       {
         //click date text box to make calendar visible
         const element = await page.waitForSelector(`input[name="Incident.CustomFields.CO.EventDate"]`)
-        await element?.click()
+        // await element?.click()
+        await element?.evaluate((b) => b.click())
       }
       {
         //always pick current date (highlighted)
         const element = await page.waitForSelector(`a.ui-state-highlight`)
-        await element?.click()
+        // await element?.click()
+        await element?.evaluate((b) => b.click())
       }
       {
         await page.waitForSelector(`select[name="OPA.Complaints.ComplaintCode"]`)
@@ -34,11 +36,13 @@ if (elapsed > month) {
       }
       {
         const element = await page.waitForSelector(`input[name='chkLotNumber']`)
-        await element?.click()
+        // await element?.click()
+        await element?.evaluate((b) => b.click())
       }
       {
         const element = await page.waitForSelector(`input[name="OPA.Complaint.InsertionDate"]`)
-        await element?.click()
+        // await element?.click()
+        await element?.evaluate((b) => b.click())
       }
       {
         const element = await page.waitForSelector(`a.ui-state-highlight`)
@@ -48,7 +52,8 @@ if (elapsed > month) {
           failDay = 28
           //click calendar back a month
           const elem = await page.waitForSelector(`.ui-icon-circle-triangle-w`)
-          await elem?.click()
+          // await elem?.click()
+          await elem?.evaluate((b) => b.click())
         }
         const linkHandlers = await page.$x(`//a[contains(text(), ${failDay})]`)
         if (linkHandlers.length > 0) {
@@ -63,7 +68,8 @@ if (elapsed > month) {
       }
       {
         const element = await page.waitForSelector(`input[name='chkTransmitterID']`)
-        await element?.click()
+        // await element?.click()
+        await element?.evaluate((b) => b.click())
       }
       {
         await page.waitForSelector(`select[name='OPA.Complaint.SystemGenerationList']`)
@@ -87,7 +93,8 @@ if (elapsed > month) {
       }
       {
         const element = await page.waitForSelector(`input[name="date_of_birth"]`)
-        await element?.click()
+        // await element?.click()
+        await element?.evaluate((b) => b.click())
         await page.select('select.ui-datepicker-year', '1998')
         await page.select('select.ui-datepicker-month', '5')
 
@@ -121,21 +128,6 @@ if (elapsed > month) {
       {
         const element = await page.waitForSelector(`input[name='CO.MultiAddress.Street']`)
         await element?.type('5955 SE Milwaukie Ave Apt 112')
-        // await element?.type('5955 SE Milwaukie Ave ')
-        // await page.waitForTimeout(1000)
-        // await element?.type('Apt 112 ')
-        // await page.waitForTimeout(1000)
-        // await element?.type('Portland, ')
-        // await page.waitForTimeout(1000)
-        // await element?.type('OR, ')
-        // await page.waitForTimeout(1000)
-        // await element?.type('97202')
-        // await page.keyboard.press('Backspace')
-        // await page.waitForTimeout(1000)
-        // await element?.type('2')
-        // await page.keyboard.press('ArrowDown')
-        // await page.keyboard.press('ArrowDown')
-        // await page.keyboard.press('Enter')
       }
       {
         const element = await page.waitForSelector(`input[name='CO.MultiAddress.City']`)
@@ -155,7 +147,8 @@ if (elapsed > month) {
       }
       {
         const element = await page.waitForSelector(`input[name='Incident.CustomFields.CO.AcceptTerms']`)
-        await element?.click()
+        // await element?.click()
+        await element?.evaluate((b) => b.click())
       }
       {
         await page.click(`button[id="submit_btn"]`)
