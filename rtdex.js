@@ -26,14 +26,14 @@ if (elapsed > month) {
         {
             //click date text box to make calendar visible
             const element = await page.waitForSelector(`input[name="Incident.CustomFields.CO.EventDate"]`);
-            // await element?.click()
-            await (element === null || element === void 0 ? void 0 : element.evaluate((b) => b.click()));
+            await element?.click();
+            // await element?.evaluate((b) => b.click())
         }
         {
             //always pick current date (highlighted)
             const element = await page.waitForSelector(`a.ui-state-highlight`);
-            // await element?.click()
-            await (element === null || element === void 0 ? void 0 : element.evaluate((b) => b.click()));
+            await element?.click();
+            // await element?.evaluate((b) => b.click())
         }
         {
             await page.waitForSelector(`select[name="OPA.Complaints.ComplaintCode"]`);
@@ -41,13 +41,13 @@ if (elapsed > month) {
         }
         {
             const element = await page.waitForSelector(`input[name='chkLotNumber']`);
-            // await element?.click()
-            await (element === null || element === void 0 ? void 0 : element.evaluate((b) => b.click()));
+            await element?.click();
+            // await element?.evaluate((b) => b.click())
         }
         {
             const element = await page.waitForSelector(`input[name="OPA.Complaint.InsertionDate"]`);
-            // await element?.click()
-            await (element === null || element === void 0 ? void 0 : element.evaluate((b) => b.click()));
+            await element?.click();
+            // await element?.evaluate((b) => b.click())
         }
         {
             const element = await page.waitForSelector(`a.ui-state-highlight`);
@@ -57,8 +57,8 @@ if (elapsed > month) {
                 failDay = 28;
                 //click calendar back a month
                 const elem = await page.waitForSelector(`.ui-icon-circle-triangle-w`);
-                // await elem?.click()
-                await (elem === null || elem === void 0 ? void 0 : elem.evaluate((b) => b.click()));
+                await elem?.click();
+                // await elem?.evaluate((b) => b.click())
             }
             const linkHandlers = await page.$x(`//a[contains(text(), ${failDay})]`);
             if (linkHandlers.length > 0) {
@@ -74,8 +74,8 @@ if (elapsed > month) {
         }
         {
             const element = await page.waitForSelector(`input[name='chkTransmitterID']`);
-            // await element?.click()
-            await (element === null || element === void 0 ? void 0 : element.evaluate((b) => b.click()));
+            await element?.click();
+            // await element?.evaluate((b) => b.click())
         }
         {
             await page.waitForSelector(`select[name='OPA.Complaint.SystemGenerationList']`);
@@ -91,16 +91,16 @@ if (elapsed > month) {
         }
         {
             const element = await page.waitForSelector(`input[name='Contact.Name.First']`);
-            await (element === null || element === void 0 ? void 0 : element.type('Aidan'));
+            await element?.type('Aidan');
         }
         {
             const element = await page.waitForSelector(`input[name='Contact.Name.Last']`);
-            await (element === null || element === void 0 ? void 0 : element.type('Gibson'));
+            await element?.type('Gibson');
         }
         {
             const element = await page.waitForSelector(`input[name="date_of_birth"]`);
-            // await element?.click()
-            await (element === null || element === void 0 ? void 0 : element.evaluate((b) => b.click()));
+            await element?.click();
+            // await element?.evaluate((b) => b.click())
             await page.select('select.ui-datepicker-year', '1998');
             await page.select('select.ui-datepicker-month', '5');
             const linkHandlers = await page.$x(`//a[contains(text(), "8")]`);
@@ -117,7 +117,7 @@ if (elapsed > month) {
         }
         {
             const element = await page.waitForSelector(`input[name='Contact.Emails.PRIMARY.Address']`);
-            await (element === null || element === void 0 ? void 0 : element.type('tronicdude@gmail.com'));
+            await element?.type('tronicdude@gmail.com');
         }
         {
             await page.waitForSelector('select[name="phone_type"]');
@@ -125,7 +125,7 @@ if (elapsed > month) {
         }
         {
             const element = await page.waitForSelector(`input[name='Contact.Phones.MOBILE.Number']`);
-            await (element === null || element === void 0 ? void 0 : element.type('8188523750'));
+            await element?.type('8188523750');
         }
         {
             await page.waitForSelector('select[name="method_of_contact"]');
@@ -133,15 +133,15 @@ if (elapsed > month) {
         }
         {
             const element = await page.waitForSelector(`input[name='CO.MultiAddress.Street']`);
-            await (element === null || element === void 0 ? void 0 : element.type('5955 SE Milwaukie Ave Apt 112'));
+            await element?.type('5955 SE Milwaukie Ave Apt 112');
         }
         {
             const element = await page.waitForSelector(`input[name='CO.MultiAddress.City']`);
-            await (element === null || element === void 0 ? void 0 : element.type('Portland'));
+            await element?.type('Portland');
         }
         {
             const element = await page.waitForSelector(`input[name='CO.MultiAddress.Zip']`);
-            await (element === null || element === void 0 ? void 0 : element.type('97202'));
+            await element?.type('97202');
         }
         {
             await page.waitForSelector('select[name="Contact.Address.StateOrProvince"]');
@@ -153,8 +153,8 @@ if (elapsed > month) {
         }
         {
             const element = await page.waitForSelector(`input[name='Incident.CustomFields.CO.AcceptTerms']`);
-            // await element?.click()
-            await (element === null || element === void 0 ? void 0 : element.evaluate((b) => b.click()));
+            await element?.click();
+            // await element?.evaluate((b) => b.click())
         }
         {
             await page.click(`button[id="submit_btn"]`);
@@ -165,7 +165,7 @@ if (elapsed > month) {
         {
             let d = new Date();
             let dateString = d.toString() + '\n';
-            fs.writeFile('lastrun.txt', dateString, (err) => {
+            fs.writeFile('lastrun.txt', Date.now().toString(), (err) => {
                 if (err)
                     throw err;
             });

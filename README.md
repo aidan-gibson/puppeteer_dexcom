@@ -1,3 +1,18 @@
+# have it TELL ME if not working later, or set some todoist alert
+# fixing issue
+removed "dom" from lib in tsconfig.json
+
+lastrun.txt is receiving the date in the wrong format (should be in ms)
+
+still not working.
+
+pup IDE mostly works (just doesn't click addr at end)
+
+tsconfig
+swapped "lib": ["es2015", "es2016", "es2017"], with "lib": ["ES2021"],
+
+target es2017 with ES2021
+# og notes
 run node rtdex.js to run it. can view it going via chrome://inspect
 
 Will get confirmation email on every run
