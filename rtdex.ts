@@ -11,12 +11,13 @@ if (elapsed > month) {
     .use(StealthPlugin())
     .launch({
       headless: true,
+      // slowMo: 250,
       defaultViewport: null,
       args: ['--remote-debugging-port=9222', '--remote-debugging-address=0.0.0.0'],
     }) //chrome://inspect
     .then(async (browser) => {
       const page = await browser.newPage()
-      await page.setDefaultNavigationTimeout(600000)
+      await page.setDefaultNavigationTimeout(60000)
       await page.goto('https://dexcom.custhelp.com/')
       {
         //click date text box to make calendar visible
@@ -130,21 +131,28 @@ if (elapsed > month) {
         await element?.type('5955 SE Milwaukie Ave Apt 112')
       }
       {
-        const element = await page.waitForSelector(`input[name='CO.MultiAddress.City']`)
-        await element?.type('Portland')
+        //todo verify it IS down down. if it isn't, keep messing w the input
+        //  down down enter
+        await page.keyboard.press('ArrowDown')
+        await page.keyboard.press('ArrowDown')
+        await page.keyboard.press('Enter')
       }
-      {
-        const element = await page.waitForSelector(`input[name='CO.MultiAddress.Zip']`)
-        await element?.type('97202')
-      }
-      {
-        await page.waitForSelector('select[name="Contact.Address.StateOrProvince"]')
-        await page.select('select[name="Contact.Address.StateOrProvince"]', '42')
-      }
-      {
-        await page.waitForSelector('select[name="Contact_CustomFields_CO_Country"]')
-        await page.select('select[name="Contact_CustomFields_CO_Country"]', '1')
-      }
+      // {
+      //   const element = await page.waitForSelector(`input[name='CO.MultiAddress.City']`)
+      //   await element?.type('Portland')
+      // }
+      // {
+      //   const element = await page.waitForSelector(`input[name='CO.MultiAddress.Zip']`)
+      //   await element?.type('97202')
+      // }
+      // {
+      //   await page.waitForSelector('select[name="Contact.Address.StateOrProvince"]')
+      //   await page.select('select[name="Contact.Address.StateOrProvince"]', '42')
+      // }
+      // {
+      //   await page.waitForSelector('select[name="Contact_CustomFields_CO_Country"]')
+      //   await page.select('select[name="Contact_CustomFields_CO_Country"]', '1')
+      // }
       {
         const element = await page.waitForSelector(`input[name='Incident.CustomFields.CO.AcceptTerms']`)
         await element?.click()
@@ -153,10 +161,9 @@ if (elapsed > month) {
       {
         await page.click(`button[id="submit_btn"]`)
       }
-      {
+      if (page.url().includes('dexcom.custhelp.com/app/callback_confirm/refno/')) {
         await browser.close()
-      }
-      {
+
         let d = new Date()
         let dateString = d.toString() + '\n'
         fs.writeFile('lastrun.txt', Date.now().toString(), (err: any) => {

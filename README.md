@@ -1,6 +1,3 @@
-# have it TELL ME if not working later, or set some todoist alert
-# fixing issue
-removed "dom" from lib in tsconfig.json
 
 lastrun.txt is receiving the date in the wrong format (should be in ms)
 
