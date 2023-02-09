@@ -24,7 +24,7 @@ if (elapsed > month) {
   puppeteer
     .use(StealthPlugin())
     .launch({
-      headless: true,
+      headless: false,
       // slowMo: 250,
       slowMo: 100,
       defaultViewport: null,

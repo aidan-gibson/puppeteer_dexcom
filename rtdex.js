@@ -27,7 +27,7 @@ if (elapsed > month) {
     puppeteer_extra_1.default
         .use((0, puppeteer_extra_plugin_stealth_1.default)())
         .launch({
-        headless: true,
+        headless: false,
         // slowMo: 250,
         slowMo: 100,
         defaultViewport: null,
