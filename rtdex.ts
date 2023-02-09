@@ -6,12 +6,18 @@ let lastRunString = fs.readFileSync('lastrun.txt', 'utf-8')
 let lastRunNumber = parseInt(lastRunString)
 let elapsed = epoch - lastRunNumber
 let month = 2.628e9
+
+let firstName = 'Aidan'
+let lastName = 'Gibson'
+let DOBYear = '1998'
+let DOBMonth = 6
+let DOBDay = 8
 if (elapsed > month) {
   puppeteer
     .use(StealthPlugin())
     .launch({
-      headless: true,
-      // slowMo: 250,
+      headless: false,
+      slowMo: 250,
       defaultViewport: null,
       args: ['--remote-debugging-port=9222', '--remote-debugging-address=0.0.0.0'],
     }) //chrome://inspect
@@ -86,20 +92,22 @@ if (elapsed > month) {
       }
       {
         const element = await page.waitForSelector(`input[name='Contact.Name.First']`)
-        await element?.type('Aidan')
+        await element?.type(firstName)
       }
       {
         const element = await page.waitForSelector(`input[name='Contact.Name.Last']`)
-        await element?.type('Gibson')
+        await element?.type(lastName)
       }
       {
         const element = await page.waitForSelector(`input[name="date_of_birth"]`)
         await element?.click()
         // await element?.evaluate((b) => b.click())
-        await page.select('select.ui-datepicker-year', '1998')
-        await page.select('select.ui-datepicker-month', '5')
+        await page.select('select.ui-datepicker-year', DOBYear)
+        await page.select('select.ui-datepicker-month', String(DOBMonth - 1))
+        // month starts at 0, ie January is 0
 
-        const linkHandlers = await page.$x(`//a[contains(text(), "8")]`)
+        // const linkHandlers = await page.$x(`//a[contains(text(), "8")]`)
+        const linkHandlers = await page.$x(`//a[contains(text(), "${DOBDay}")]`)
         if (linkHandlers.length > 0) {
           await linkHandlers[0].click()
         } else {

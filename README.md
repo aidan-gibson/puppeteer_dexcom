@@ -1,4 +1,8 @@
+# 2023 revisit
+Address works if slowMo: 250
+Submit not work
 
+# old
 lastrun.txt is receiving the date in the wrong format (should be in ms)
 
 still not working.
