@@ -9,6 +9,10 @@ const fs = require('fs');
 let epoch = Date.now();
 let lastRunString = fs.readFileSync('lastrun.txt', 'utf-8');
 let lastRunNumber = parseInt(lastRunString);
+// on first run lastrun.txt will be empty, it must have SOMETHING tho
+if (isNaN(lastRunNumber)) {
+    lastRunNumber = 1;
+}
 let elapsed = epoch - lastRunNumber;
 let month = 2.628e9;
 let firstName = 'Aidan';
@@ -23,7 +27,7 @@ if (elapsed > month) {
     puppeteer_extra_1.default
         .use((0, puppeteer_extra_plugin_stealth_1.default)())
         .launch({
-        headless: false,
+        headless: true,
         // slowMo: 250,
         slowMo: 100,
         defaultViewport: null,

@@ -1,5 +1,5 @@
 # 2023 revisit
-Address works if slowMo: 250
+Address works if slowMo: 100
 Submit was not working bc the cookies had to be accepted (in real chrome I have an extension that auto-accepts cookies, this one needed it tho)
 
 # old
