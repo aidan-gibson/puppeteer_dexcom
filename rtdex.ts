@@ -12,12 +12,17 @@ let lastName = 'Gibson'
 let DOBYear = '1998'
 let DOBMonth = 6
 let DOBDay = 8
+let emailAddr = 'tronicdude@gmail.com'
+let cellPhone = '8188523750'
+let streetAddress = '5955 SE Milwaukie Ave Apt 112'
+
 if (elapsed > month) {
   puppeteer
     .use(StealthPlugin())
     .launch({
       headless: false,
-      slowMo: 250,
+      // slowMo: 250,
+      slowMo: 100,
       defaultViewport: null,
       args: ['--remote-debugging-port=9222', '--remote-debugging-address=0.0.0.0'],
     }) //chrome://inspect
@@ -120,7 +125,7 @@ if (elapsed > month) {
       }
       {
         const element = await page.waitForSelector(`input[name='Contact.Emails.PRIMARY.Address']`)
-        await element?.type('tronicdude@gmail.com')
+        await element?.type(emailAddr)
       }
       {
         await page.waitForSelector('select[name="phone_type"]')
@@ -128,7 +133,7 @@ if (elapsed > month) {
       }
       {
         const element = await page.waitForSelector(`input[name='Contact.Phones.MOBILE.Number']`)
-        await element?.type('8188523750')
+        await element?.type(cellPhone)
       }
       {
         await page.waitForSelector('select[name="method_of_contact"]')
@@ -136,15 +141,15 @@ if (elapsed > month) {
       }
       {
         const element = await page.waitForSelector(`input[name='CO.MultiAddress.Street']`)
-        await element?.type('5955 SE Milwaukie Ave Apt 112')
+        await element?.type(streetAddress)
       }
       {
-        //todo verify it IS down down. if it isn't, keep messing w the input
-        //  down down enter
+        // TODO this'll b diff for soph
         await page.keyboard.press('ArrowDown')
         await page.keyboard.press('ArrowDown')
         await page.keyboard.press('Enter')
       }
+      // TODO unnecessary for me, autofilled by hitting "Enter" on correct addr
       // {
       //   const element = await page.waitForSelector(`input[name='CO.MultiAddress.City']`)
       //   await element?.type('Portland')
@@ -167,8 +172,15 @@ if (elapsed > month) {
         // await element?.evaluate((b) => b.click())
       }
       {
-        await page.click(`button[id="submit_btn"]`)
+        //accept cookies
+        const element = await page.waitForSelector(`a[class="close"]`)
+        await element?.click()
       }
+      {
+        const element = await page.waitForSelector(`button[id="submit_btn"]`)
+        await element?.click()
+      }
+      await Promise.all([page.waitForNavigation()])
       if (page.url().includes('dexcom.custhelp.com/app/callback_confirm/refno/')) {
         await browser.close()
 

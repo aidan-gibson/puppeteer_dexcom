@@ -1,13 +1,11 @@
 # 2023 revisit
 Address works if slowMo: 250
-Submit not work
+Submit was not working bc the cookies had to be accepted (in real chrome I have an extension that auto-accepts cookies, this one needed it tho)
 
 # old
 lastrun.txt is receiving the date in the wrong format (should be in ms)
 
-still not working.
 
-pup IDE mostly works (just doesn't click addr at end)
 
 tsconfig
 swapped "lib": ["es2015", "es2016", "es2017"], with "lib": ["ES2021"],
